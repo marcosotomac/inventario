@@ -1,10 +1,8 @@
 import boto3
 import requests
 import json
-import csv
 import os
 from datetime import datetime
-from io import StringIO
 import time
 
 # Configuración AWS
@@ -90,20 +88,7 @@ def extract_categorias():
         return []
 
 
-def convert_to_csv(data, filename):
-    """Convertir datos a formato CSV"""
-    if not data:
-        return None
-
-    output = StringIO()
-    writer = csv.DictWriter(output, fieldnames=data[0].keys())
-    writer.writeheader()
-    writer.writerows(data)
-
-    return output.getvalue()
-
-
-def upload_to_s3(data, key):
+def upload_to_s3(data, key, content_type='application/json'):
     """Subir datos a S3"""
     if not s3_client:
         print(f"⚠ S3 no configurado. Guardando localmente: {key}")
@@ -118,7 +103,7 @@ def upload_to_s3(data, key):
             Bucket=S3_BUCKET,
             Key=key,
             Body=data.encode('utf-8'),
-            ContentType='text/csv'
+            ContentType=content_type
         )
         print(f"✓ Subido a S3: s3://{S3_BUCKET}/{key}")
         return True
@@ -137,24 +122,18 @@ def main():
     # Extraer productos
     productos = extract_productos()
     if productos:
-        # Convertir a CSV
-        csv_data = convert_to_csv(productos, 'productos')
-
-        # Subir a S3
-        s3_key = f"productos/productos_{timestamp}.csv"
-        upload_to_s3(csv_data, s3_key)
-
-        # También guardar JSON
-        json_data = json.dumps(productos, indent=2)
+        # Guardar como JSON
+        json_data = json.dumps(productos, indent=2, ensure_ascii=False)
         json_key = f"productos/productos_{timestamp}.json"
-        upload_to_s3(json_data, json_key)
+        upload_to_s3(json_data, json_key, 'application/json')
 
     # Extraer categorías
     categorias = extract_categorias()
     if categorias:
-        csv_data = convert_to_csv(categorias, 'categorias')
-        s3_key = f"categorias/categorias_{timestamp}.csv"
-        upload_to_s3(csv_data, s3_key)
+        # Guardar como JSON
+        json_data = json.dumps(categorias, indent=2, ensure_ascii=False)
+        json_key = f"categorias/categorias_{timestamp}.json"
+        upload_to_s3(json_data, json_key, 'application/json')
 
     print("=" * 60)
     print("✓ INGESTA DE PRODUCTOS - Completada")

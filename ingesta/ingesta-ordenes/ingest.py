@@ -10,7 +10,7 @@ import time
 # Configuración AWS
 AWS_REGION = os.getenv('AWS_REGION', 'us-east-1')
 AWS_PROFILE = os.getenv('AWS_PROFILE', 'default')
-S3_BUCKET = os.getenv('S3_BUCKET', 'inventario-datalake')
+S3_BUCKET = os.getenv('S3_BUCKET', 'inventario-datalake-2025')
 ORDENES_SERVICE_URL = os.getenv(
     'ORDENES_SERVICE_URL', 'http://ordenes-service:8080')
 
