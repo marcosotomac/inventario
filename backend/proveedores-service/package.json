@@ -1,0 +1,31 @@
+{
+  "name": "proveedores-service",
+  "version": "1.0.0",
+  "description": "Microservicio de gestión de proveedores",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "seed": "node src/seed.js"
+  },
+  "keywords": [
+    "microservicio",
+    "proveedores",
+    "mongodb",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0",
+    "@faker-js/faker": "^8.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

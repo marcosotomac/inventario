@@ -1,0 +1,69 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+docs/
+DIAGRAMAS.md
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Testing
+.coverage
+.pytest_cache/
+coverage/
+*.cover
+.hypothesis/
+htmlcov/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+target/
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.env
+
+# AWS
+.aws/
+*.pem
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Others
+*.bak
+*.tmp
+temp/
+tmp/

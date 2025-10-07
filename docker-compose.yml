@@ -1,0 +1,164 @@
+version: "3.8"
+
+services:
+  # ========================================
+  # BASES DE DATOS
+  # ========================================
+
+  mysql:
+    image: mysql:8.0
+    container_name: inventario-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password123
+      MYSQL_DATABASE: productos_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - inventario-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: inventario-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: ordenes_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - inventario-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongodb:
+    image: mongo:7.0
+    container_name: inventario-mongodb
+    environment:
+      MONGO_INITDB_DATABASE: proveedores_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - inventario-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========================================
+  # MICROSERVICIOS
+  # ========================================
+
+  productos-service:
+    build: ./backend/productos-service
+    container_name: productos-service
+    environment:
+      DATABASE_URL: mysql+pymysql://root:password123@mysql:3306/productos_db
+    ports:
+      - "5001:5001"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - inventario-network
+    restart: unless-stopped
+
+  ordenes-service:
+    build: ./backend/ordenes-service
+    container_name: ordenes-service
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ordenes_db
+      DB_USER: postgres
+      DB_PASSWORD: password123
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - inventario-network
+    restart: unless-stopped
+
+  proveedores-service:
+    build: ./backend/proveedores-service
+    container_name: proveedores-service
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/proveedores_db
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - inventario-network
+    restart: unless-stopped
+
+  integracion-service:
+    build: ./backend/integracion-service
+    container_name: integracion-service
+    environment:
+      PRODUCTOS_SERVICE_URL: http://productos-service:5001
+      ORDENES_SERVICE_URL: http://ordenes-service:8080
+      PROVEEDORES_SERVICE_URL: http://proveedores-service:3000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - productos-service
+      - ordenes-service
+      - proveedores-service
+    networks:
+      - inventario-network
+    restart: unless-stopped
+
+  analitico-service:
+    build: ./backend/analitico-service
+    container_name: analitico-service
+    environment:
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      AWS_PROFILE: ${AWS_PROFILE:-default}
+      ATHENA_DATABASE: ${ATHENA_DATABASE:-inventario_db}
+      ATHENA_OUTPUT_LOCATION: ${ATHENA_OUTPUT_LOCATION}
+    ports:
+      - "9000:9000"
+    volumes:
+      # Montar credenciales AWS (para AWS Academy)
+      - ~/.aws:/root/.aws:ro
+    networks:
+      - inventario-network
+    restart: unless-stopped
+
+# ========================================
+# VOLUMES
+# ========================================
+
+volumes:
+  mysql_data:
+    driver: local
+  postgres_data:
+    driver: local
+  mongodb_data:
+    driver: local
+
+# ========================================
+# NETWORKS
+# ========================================
+
+networks:
+  inventario-network:
+    driver: bridge
