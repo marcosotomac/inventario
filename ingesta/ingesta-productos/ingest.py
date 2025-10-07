@@ -122,18 +122,18 @@ def main():
     # Extraer productos
     productos = extract_productos()
     if productos:
-        # Guardar como JSON
-        json_data = json.dumps(productos, indent=2, ensure_ascii=False)
+        # Guardar como JSON Lines (newline-delimited JSON)
+        json_lines = '\n'.join([json.dumps(p, ensure_ascii=False) for p in productos])
         json_key = f"productos/productos_{timestamp}.json"
-        upload_to_s3(json_data, json_key, 'application/json')
+        upload_to_s3(json_lines, json_key, 'application/json')
 
     # Extraer categorías
     categorias = extract_categorias()
     if categorias:
-        # Guardar como JSON
-        json_data = json.dumps(categorias, indent=2, ensure_ascii=False)
+        # Guardar como JSON Lines (newline-delimited JSON)
+        json_lines = '\n'.join([json.dumps(c, ensure_ascii=False) for c in categorias])
         json_key = f"categorias/categorias_{timestamp}.json"
-        upload_to_s3(json_data, json_key, 'application/json')
+        upload_to_s3(json_lines, json_key, 'application/json')
 
     print("=" * 60)
     print("✓ INGESTA DE PRODUCTOS - Completada")
@@ -142,3 +142,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+##solo hace la ingesta de json
