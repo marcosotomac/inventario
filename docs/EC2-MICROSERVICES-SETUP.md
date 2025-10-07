@@ -227,137 +227,52 @@ Presiona `Ctrl+X`, luego `Y`, luego `ENTER` para guardar.
 
 ---
 
-## **PARTE 5: Crear docker-compose.yml Optimizado**
+## **PARTE 5: Verificar Archivos del Proyecto**
 
-### **Paso 16: Crear docker-compose para producción**
+### **Paso 16: Verificar que todo está listo**
 
 ```bash
 cd ~/app
-nano docker-compose.prod.yml
+
+# Verificar que docker-compose.yml existe
+ls -la docker-compose.yml
+
+# Verificar que el archivo .env existe y tiene las IPs correctas
+cat .env | grep "52.123.45.67"
+
+# Verificar estructura del backend
+ls -la backend/
 ```
 
-Copia y pega:
+✅ Tu repositorio ya tiene el archivo `docker-compose.yml` configurado.
 
-```yaml
-version: "3.8"
-
-services:
-  # ========================================
-  # MICROSERVICIOS
-  # ========================================
-
-  productos-service:
-    build: ./backend/productos-service
-    container_name: productos-service
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    ports:
-      - "5001:5001"
-    networks:
-      - app-network
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  ordenes-service:
-    build: ./backend/ordenes-service
-    container_name: ordenes-service
-    environment:
-      DB_HOST: ${POSTGRES_HOST}
-      DB_NAME: ${POSTGRES_DB}
-      DB_USER: ${POSTGRES_USER}
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-    ports:
-      - "8080:8080"
-    networks:
-      - app-network
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  proveedores-service:
-    build: ./backend/proveedores-service
-    container_name: proveedores-service
-    environment:
-      MONGO_URI: ${MONGO_URI}
-      PORT: 3000
-    ports:
-      - "3000:3000"
-    networks:
-      - app-network
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  integracion-service:
-    build: ./backend/integracion-service
-    container_name: integracion-service
-    environment:
-      PRODUCTOS_SERVICE_URL: http://productos-service:5001
-      ORDENES_SERVICE_URL: http://ordenes-service:8080
-      PROVEEDORES_SERVICE_URL: http://proveedores-service:3000
-    ports:
-      - "8000:8000"
-    depends_on:
-      - productos-service
-      - ordenes-service
-      - proveedores-service
-    networks:
-      - app-network
-    restart: unless-stopped
-
-  analitico-service:
-    build: ./backend/analitico-service
-    container_name: analitico-service
-    environment:
-      AWS_REGION: ${AWS_REGION}
-      ATHENA_DATABASE: ${ATHENA_DATABASE}
-      ATHENA_OUTPUT_LOCATION: ${ATHENA_OUTPUT_LOCATION}
-    ports:
-      - "9000:9000"
-    networks:
-      - app-network
-    restart: unless-stopped
-
-networks:
-  app-network:
-    driver: bridge
-```
-
-Guardar: `Ctrl+X`, `Y`, `ENTER`
+**⚠️ IMPORTANTE:** El docker-compose.yml incluye las bases de datos (MySQL, PostgreSQL, MongoDB) pero vamos a iniciar SOLO los microservicios porque las bases de datos ya están en otra instancia EC2.
 
 ---
 
 ## **PARTE 6: Construir y Desplegar**
 
-### **Paso 17: Construir Imágenes Docker**
+### **Paso 17: Construir SOLO los Microservicios**
 
 ```bash
 cd ~/app
 
-# Construir todas las imágenes (esto toma 10-15 minutos)
-docker-compose -f docker-compose.prod.yml build
+# Construir solo los servicios backend (esto toma 10-15 minutos)
+docker-compose build productos-service ordenes-service proveedores-service integracion-service analitico-service
 ```
 
 ⏳ **Espera pacientemente** - verás el progreso de cada servicio.
 
-### **Paso 18: Iniciar Microservicios**
+**Nota:** NO construimos las bases de datos (mysql, postgres, mongodb) porque ya están en otra instancia EC2.
+
+### **Paso 18: Iniciar SOLO los Microservicios**
 
 ```bash
-# Iniciar todos los servicios
-docker-compose -f docker-compose.prod.yml up -d
+# Iniciar solo los microservicios (sin las bases de datos)
+docker-compose up -d productos-service ordenes-service proveedores-service integracion-service analitico-service
 
 # Ver logs en tiempo real
-docker-compose -f docker-compose.prod.yml logs -f
+docker-compose logs -f
 ```
 
 Para salir de los logs: `Ctrl+C`
@@ -365,17 +280,25 @@ Para salir de los logs: `Ctrl+C`
 ### **Paso 19: Verificar Estado**
 
 ```bash
-# Ver contenedores corriendo
+# Ver contenedores corriendo (deberías ver 5 contenedores)
 docker ps
 
-# Ver estado de todos los servicios
-docker-compose -f docker-compose.prod.yml ps
+# Ver estado de los microservicios
+docker-compose ps
 
 # Ver logs de un servicio específico
 docker logs productos-service
 docker logs ordenes-service
 docker logs proveedores-service
 ```
+
+**Deberías ver:**
+
+- ✅ productos-service (Up)
+- ✅ ordenes-service (Up)
+- ✅ proveedores-service (Up)
+- ✅ integracion-service (Up)
+- ✅ analitico-service (Up)
 
 ---
 
@@ -431,7 +354,7 @@ curl http://54.234.56.78:9000/health
 
 Abre en tu navegador:
 
-- **Productos Swagger**: `http://54.234.56.78:5001/api/docs`
+- **Productos Swagger**: `http://52.6.92.4:5001/api/docs`
 - **Ordenes Swagger**: `http://54.234.56.78:8080/swagger-ui.html`
 - **Proveedores Swagger**: `http://54.234.56.78:3000/api-docs`
 
@@ -458,8 +381,8 @@ VITE_ANALITICO_API=http://54.234.56.78:9000
 ### **Ver Logs**
 
 ```bash
-# Todos los servicios
-docker-compose -f docker-compose.prod.yml logs -f
+# Todos los microservicios
+docker-compose logs -f
 
 # Servicio específico
 docker logs -f productos-service
@@ -469,29 +392,33 @@ docker logs -f ordenes-service --tail 100
 ### **Reiniciar Servicios**
 
 ```bash
-# Reiniciar todos
-docker-compose -f docker-compose.prod.yml restart
+# Reiniciar todos los microservicios
+docker-compose restart productos-service ordenes-service proveedores-service integracion-service analitico-service
 
 # Reiniciar uno específico
-docker-compose -f docker-compose.prod.yml restart productos-service
+docker-compose restart productos-service
 ```
 
 ### **Detener Servicios**
 
 ```bash
-# Detener todos
-docker-compose -f docker-compose.prod.yml stop
+# Detener solo microservicios
+docker-compose stop productos-service ordenes-service proveedores-service integracion-service analitico-service
 
-# Detener y eliminar
-docker-compose -f docker-compose.prod.yml down
+# Detener y eliminar solo microservicios
+docker-compose down
 ```
 
 ### **Reconstruir un Servicio**
 
 ```bash
-# Si haces cambios en el código
-docker-compose -f docker-compose.prod.yml build productos-service
-docker-compose -f docker-compose.prod.yml up -d productos-service
+# Si haces cambios en el código (actualizar desde GitHub)
+cd ~/app
+git pull origin main
+
+# Reconstruir servicio específico
+docker-compose build productos-service
+docker-compose up -d productos-service
 ```
 
 ### **Ver Uso de Recursos**
@@ -559,18 +486,21 @@ free -h
 ### **Reiniciar Todo Desde Cero**
 
 ```bash
-# Detener y eliminar todo
-docker-compose -f docker-compose.prod.yml down
+# Detener y eliminar todos los contenedores de microservicios
+docker-compose down
 
-# Eliminar volúmenes
-docker-compose -f docker-compose.prod.yml down -v
+# Eliminar imágenes para forzar rebuild
+docker system prune -a -f
 
-# Eliminar imágenes
-docker system prune -a
+# Actualizar código desde GitHub
+cd ~/app
+git pull origin main
 
-# Reconstruir
-docker-compose -f docker-compose.prod.yml build
-docker-compose -f docker-compose.prod.yml up -d
+# Reconstruir microservicios
+docker-compose build productos-service ordenes-service proveedores-service integracion-service analitico-service
+
+# Iniciar microservicios
+docker-compose up -d productos-service ordenes-service proveedores-service integracion-service analitico-service
 ```
 
 ---
