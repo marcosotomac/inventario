@@ -3,10 +3,10 @@ import axios from "axios";
 // URLs base de los servicios
 const BASE_URLS = {
   productos: import.meta.env.VITE_PRODUCTOS_URL || "https://jqxrygdsv7.execute-api.us-east-1.amazonaws.com/ms1",
-  ordenes: import.meta.env.VITE_ORDENES_URL || "http://localhost:8080",
-  proveedores: import.meta.env.VITE_PROVEEDORES_URL || "http://localhost:3000",
-  integracion: import.meta.env.VITE_INTEGRACION_URL || "http://localhost:8000",
-  analitico: import.meta.env.VITE_ANALITICO_URL || "http://localhost:9000",
+  ordenes: import.meta.env.VITE_ORDENES_URL || "https://jqxrygdsv7.execute-api.us-east-1.amazonaws.com/ms2",
+  proveedores: import.meta.env.VITE_PROVEEDORES_URL || "https://jqxrygdsv7.execute-api.us-east-1.amazonaws.com/ms3",
+  integracion: import.meta.env.VITE_INTEGRACION_URL || "https://jqxrygdsv7.execute-api.us-east-1.amazonaws.com/ms4",
+  analitico: import.meta.env.VITE_ANALITICO_URL || "https://jqxrygdsv7.execute-api.us-east-1.amazonaws.com/ms5",
 };
 
 // Crear instancias de axios para cada servicio

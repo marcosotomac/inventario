@@ -98,7 +98,7 @@ def ejecutar_consulta_athena(query: str):
         return {"error": str(e)}
 
 
-@app.get("/health")
+@app.get("/ms5/health")
 async def health():
     """Health check"""
     return {
@@ -108,7 +108,7 @@ async def health():
     }
 
 
-@app.get("/api/rotacion-stock")
+@app.get("/ms5/api/rotacion-stock")
 async def rotacion_stock():
     """
     Análisis de rotación de stock - productos más vendidos
@@ -139,7 +139,7 @@ async def rotacion_stock():
     }
 
 
-@app.get("/api/productos-mas-vendidos")
+@app.get("/ms5/api/productos-mas-vendidos")
 async def productos_mas_vendidos(limit: int = 20):
     """
     Top productos más vendidos
@@ -166,7 +166,7 @@ async def productos_mas_vendidos(limit: int = 20):
     }
 
 
-@app.get("/api/ventas-por-categoria")
+@app.get("/ms5/api/ventas-por-categoria")
 async def ventas_por_categoria():
     """
     Análisis de ventas por categoría
@@ -192,7 +192,7 @@ async def ventas_por_categoria():
     }
 
 
-@app.get("/api/productos-bajo-stock")
+@app.get("/ms5/api/productos-bajo-stock")
 async def productos_bajo_stock(umbral: int = 50):
     """
     Productos con stock crítico
@@ -221,7 +221,7 @@ async def productos_bajo_stock(umbral: int = 50):
     }
 
 
-@app.get("/api/rentabilidad-proveedores")
+@app.get("/ms5/api/rentabilidad-proveedores")
 async def rentabilidad_proveedores():
     """
     Análisis de rentabilidad por proveedor
@@ -250,7 +250,7 @@ async def rentabilidad_proveedores():
     }
 
 
-@app.get("/api/tendencias-temporales")
+@app.get("/ms5/api/tendencias-temporales")
 async def tendencias_temporales():
     """
     Análisis de tendencias de ventas por mes
@@ -275,7 +275,7 @@ async def tendencias_temporales():
     }
 
 
-@app.get("/api/clientes-top")
+@app.get("/ms5/api/clientes-top")
 async def clientes_top(limit: int = 20):
     """
     Mejores clientes por volumen de compra
@@ -303,7 +303,7 @@ async def clientes_top(limit: int = 20):
     }
 
 
-@app.get("/api/dashboard-kpis")
+@app.get("/ms5/api/dashboard-kpis")
 async def dashboard_kpis():
     """
     KPIs principales para el dashboard
@@ -337,7 +337,7 @@ async def dashboard_kpis():
     }
 
 
-@app.post("/api/consulta-personalizada")
+@app.post("/ms5/api/consulta-personalizada")
 async def consulta_personalizada(query: str):
     """
     Ejecutar consulta SQL personalizada en Athena

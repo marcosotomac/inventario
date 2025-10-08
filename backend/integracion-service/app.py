@@ -16,26 +16,26 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["*"],    
     allow_headers=["*"],
 )
 
 # URLs de los microservicios
 PRODUCTOS_SERVICE_URL = os.getenv(
-    'PRODUCTOS_SERVICE_URL', 'http://productos-service:5001')
+    'PRODUCTOS_SERVICE_URL', 'http://productos-service:5001/ms1')
 ORDENES_SERVICE_URL = os.getenv(
-    'ORDENES_SERVICE_URL', 'http://ordenes-service:8080')
+    'ORDENES_SERVICE_URL', 'http://ordenes-service:8080/ms2')
 PROVEEDORES_SERVICE_URL = os.getenv(
-    'PROVEEDORES_SERVICE_URL', 'http://proveedores-service:3000')
+    'PROVEEDORES_SERVICE_URL', 'http://proveedores-service:3000/ms3')
 
 
-@app.get("/health")
+@app.get("/ms4/health")
 async def health():
     """Health check"""
     return {"status": "healthy", "service": "integracion"}
 
 
-@app.get("/api/services-status")
+@app.get("/ms4/api/services-status")
 async def services_status():
     """Verificar el estado de todos los servicios"""
     status = {}
@@ -68,7 +68,7 @@ async def services_status():
     return status
 
 
-@app.get("/api/orden-completa/{orden_id}")
+@app.get("/ms4/api/orden-completa/{orden_id}")
 async def get_orden_completa(orden_id: int):
     """
     Obtener orden con información completa de productos y proveedor
@@ -117,7 +117,7 @@ async def get_orden_completa(orden_id: int):
                 status_code=500, detail=f"Error al consultar servicios: {str(e)}")
 
 
-@app.get("/api/producto-completo/{producto_id}")
+@app.get("/ms4/api/producto-completo/{producto_id}")
 async def get_producto_completo(producto_id: int):
     """
     Obtener producto con información del proveedor
@@ -155,7 +155,7 @@ async def get_producto_completo(producto_id: int):
                 status_code=500, detail=f"Error al consultar servicios: {str(e)}")
 
 
-@app.get("/api/dashboard-resumen")
+@app.get("/ms4/api/dashboard-resumen")
 async def get_dashboard_resumen():
     """
     Obtener resumen consolidado para el dashboard
@@ -203,7 +203,7 @@ async def get_dashboard_resumen():
         return resumen
 
 
-@app.get("/api/ordenes-recientes")
+@app.get("/ms4/api/ordenes-recientes")
 async def get_ordenes_recientes(limit: int = 10):
     """
     Obtener órdenes recientes con información de cliente
@@ -223,7 +223,7 @@ async def get_ordenes_recientes(limit: int = 10):
                 status_code=500, detail=f"Error al consultar servicio de órdenes: {str(e)}")
 
 
-@app.get("/api/productos-bajo-stock")
+@app.get("/ms4/api/productos-bajo-stock")
 async def get_productos_bajo_stock(stock_minimo: int = 50):
     """
     Obtener productos con stock bajo el mínimo especificado
@@ -256,7 +256,7 @@ async def get_productos_bajo_stock(stock_minimo: int = 50):
                 status_code=500, detail=f"Error al consultar servicio de productos: {str(e)}")
 
 
-@app.get("/api/proveedores-activos")
+@app.get("/ms4/api/proveedores-activos")
 async def get_proveedores_activos():
     """
     Obtener proveedores activos con su información de entrega
