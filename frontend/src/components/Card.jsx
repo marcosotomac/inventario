@@ -1,7 +1,13 @@
-const Card = ({ title, children, className = "" }) => {
+import { motion } from "framer-motion";
+
+const Card = ({ title, children, className = "", delay = 0 }) => {
   return (
-    <div
-      className={`bg-white rounded-lg shadow-md overflow-hidden ${className}`}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow ${className}`}
     >
       {title && (
         <div className="px-6 py-4 border-b border-gray-200">
@@ -9,7 +15,7 @@ const Card = ({ title, children, className = "" }) => {
         </div>
       )}
       <div className="p-6">{children}</div>
-    </div>
+    </motion.div>
   );
 };
 

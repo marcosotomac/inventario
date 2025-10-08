@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Button({
   children,
   onClick,
@@ -30,13 +32,16 @@ export default function Button({
   };
 
   return (
-    <button
+    <motion.button
       type={type}
       onClick={onClick}
       disabled={disabled}
+      whileHover={{ scale: disabled ? 1 : 1.02 }}
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
+      transition={{ duration: 0.15 }}
       className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className} disabled:cursor-not-allowed`}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

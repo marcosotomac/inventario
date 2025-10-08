@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   getDashboardResumen,
   getOrdenesRecientes,
@@ -51,9 +52,18 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-lg text-gray-600">Cargando dashboard...</div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex items-center justify-center h-64"
+      >
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"
+        />
+        <div className="ml-4 text-lg text-gray-600">Cargando dashboard...</div>
+      </motion.div>
     );
   }
 
@@ -85,32 +95,50 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="space-y-6"
+    >
       {/* Header */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         <p className="mt-2 text-gray-600">
           Sistema de Gestión de Inventarios - Resumen General
         </p>
-      </div>
+      </motion.div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => {
+        {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <Card key={stat.name}>
+            <Card key={stat.name} delay={index * 0.1}>
               <div className="flex items-center">
-                <div className={`p-3 rounded-lg ${stat.color}`}>
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                  className={`p-3 rounded-lg ${stat.color}`}
+                >
                   <Icon className="w-6 h-6 text-white" />
-                </div>
+                </motion.div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">
                     {stat.name}
                   </p>
-                  <p className="text-2xl font-semibold text-gray-900">
+                  <motion.p
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2 + index * 0.1, type: "spring" }}
+                    className="text-2xl font-semibold text-gray-900"
+                  >
                     {stat.value}
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </Card>
@@ -172,8 +200,14 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {ordenesRecientes.map((orden) => (
-                  <tr key={orden.id}>
+                {ordenesRecientes.map((orden, index) => (
+                  <motion.tr
+                    key={orden.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ backgroundColor: "#f9fafb" }}
+                  >
                     <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                       {orden.numeroOrden}
                     </td>
@@ -198,7 +232,7 @@ const Dashboard = () => {
                     <td className="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">
                       ${orden.total?.toFixed(2) || "0.00"}
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
@@ -212,29 +246,27 @@ const Dashboard = () => {
       </Card>
 
       {/* Información del Sistema */}
-      <Card title="Estado del Sistema">
+      <Card title="Estado del Sistema" delay={0.6}>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="ml-2 text-sm text-gray-600">
-              Servicio de Productos
-            </span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="ml-2 text-sm text-gray-600">
-              Servicio de Órdenes
-            </span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="ml-2 text-sm text-gray-600">
-              Servicio de Proveedores
-            </span>
-          </div>
+          {["Servicio de Productos", "Servicio de Órdenes", "Servicio de Proveedores"].map((service, index) => (
+            <motion.div
+              key={service}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7 + index * 0.1 }}
+              className="flex items-center"
+            >
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-3 h-3 bg-green-500 rounded-full"
+              />
+              <span className="ml-2 text-sm text-gray-600">{service}</span>
+            </motion.div>
+          ))}
         </div>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 
