@@ -7,7 +7,7 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="rounded-full h-12 w-12 border-b-2 border-blue-600"
+          className="rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400"
         />
       </div>
     );
@@ -18,7 +18,7 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="text-center py-12 text-gray-500"
+        className="text-center py-12 text-gray-500 dark:text-gray-400"
       >
         No hay datos disponibles
       </motion.div>
@@ -27,8 +27,8 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <thead className="bg-gray-50 dark:bg-gray-800">
           <motion.tr
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -40,14 +40,14 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
               >
                 {column.label}
               </motion.th>
             ))}
           </motion.tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
           {data.map((row, idx) => (
             <motion.tr
               key={row.id || idx}
@@ -57,17 +57,17 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
               onClick={() => onRowClick && onRowClick(row)}
               whileHover={
                 onRowClick
-                  ? { backgroundColor: "#f9fafb", scale: 1.01 }
+                  ? { backgroundColor: "rgba(249, 250, 251, 0.5)", scale: 1.01 }
                   : undefined
               }
               className={
-                onRowClick ? "cursor-pointer transition-colors" : ""
+                onRowClick ? "cursor-pointer transition-colors dark:hover:bg-gray-700" : ""
               }
             >
               {columns.map((column) => (
                 <td
                   key={column.key}
-                  className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                  className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
                 >
                   {column.render ? column.render(row) : row[column.key]}
                 </td>

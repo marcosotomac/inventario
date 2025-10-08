@@ -14,15 +14,15 @@ export default function Button({
 
   const variantClasses = {
     primary:
-      "bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500 disabled:bg-blue-300",
+      "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white focus:ring-blue-500 disabled:bg-blue-300 dark:disabled:bg-blue-800",
     secondary:
-      "bg-gray-200 hover:bg-gray-300 text-gray-900 focus:ring-gray-500 disabled:bg-gray-100",
+      "bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 focus:ring-gray-500 disabled:bg-gray-100 dark:disabled:bg-gray-800",
     danger:
-      "bg-red-600 hover:bg-red-700 text-white focus:ring-red-500 disabled:bg-red-300",
+      "bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white focus:ring-red-500 disabled:bg-red-300 dark:disabled:bg-red-800",
     success:
-      "bg-green-600 hover:bg-green-700 text-white focus:ring-green-500 disabled:bg-green-300",
+      "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white focus:ring-green-500 disabled:bg-green-300 dark:disabled:bg-green-800",
     outline:
-      "border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500",
+      "border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 focus:ring-blue-500",
   };
 
   const sizeClasses = {

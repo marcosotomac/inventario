@@ -7,6 +7,7 @@ import {
   Truck,
   BarChart3,
 } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Layout = () => {
   const location = useLocation();
@@ -25,13 +26,13 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
       {/* Sidebar */}
       <motion.div
         initial={{ x: -264 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="fixed inset-y-0 left-0 w-64 bg-gray-900"
+        className="fixed inset-y-0 left-0 w-64 bg-gray-900 dark:bg-gray-950 shadow-xl"
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
@@ -39,7 +40,7 @@ const Layout = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="flex items-center justify-center h-16 bg-gray-800"
+            className="flex items-center justify-between px-4 h-16 bg-gray-800 dark:bg-gray-900 border-b border-gray-700"
           >
             <h1 className="text-xl font-bold text-white">Sistema Inventario</h1>
           </motion.div>
@@ -81,10 +82,14 @@ const Layout = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="p-4 text-xs text-gray-400 border-t border-gray-800"
+            className="p-4 border-t border-gray-800 dark:border-gray-700"
           >
-            <p>CS2032 Cloud Computing</p>
-            <p className="mt-1">Ciclo 2025-2</p>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs text-gray-400">Tema</span>
+              <ThemeToggle />
+            </div>
+            <p className="text-xs text-gray-400">CS2032 Cloud Computing</p>
+            <p className="mt-1 text-xs text-gray-400">Ciclo 2025-2</p>
           </motion.div>
         </div>
       </motion.div>
