@@ -1,16 +1,20 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import {
   LayoutDashboard,
   Package,
   ShoppingCart,
   Truck,
   BarChart3,
+  Menu,
+  X,
 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const Layout = () => {
   const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const navigation = [
     { name: "Dashboard", href: "/", icon: LayoutDashboard },
@@ -27,12 +31,43 @@ const Layout = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center justify-between">
+        <h1 className="text-lg font-bold text-gray-900 dark:text-white">Sistema Inventario</h1>
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          {sidebarOpen ? (
+            <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          ) : (
+            <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          )}
+        </motion.button>
+      </div>
+
+      {/* Mobile Overlay */}
+      <AnimatePresence>
+        {sidebarOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Sidebar */}
       <motion.div
         initial={{ x: -264 }}
-        animate={{ x: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="fixed inset-y-0 left-0 w-64 bg-gray-900 dark:bg-gray-950 shadow-xl"
+        animate={{ 
+          x: sidebarOpen || window.innerWidth >= 1024 ? 0 : -264 
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="fixed inset-y-0 left-0 w-64 bg-gray-900 dark:bg-gray-950 shadow-xl z-50 lg:z-30"
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
@@ -58,6 +93,7 @@ const Layout = () => {
                 >
                   <Link
                     to={item.href}
+                    onClick={() => setSidebarOpen(false)}
                     className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                       isActive(item.href)
                         ? "bg-primary-600 text-white"
@@ -95,8 +131,8 @@ const Layout = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="pl-64">
-        <main className="p-8">
+      <div className="lg:pl-64 pt-14 lg:pt-0">
+        <main className="p-4 sm:p-6 lg:p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}

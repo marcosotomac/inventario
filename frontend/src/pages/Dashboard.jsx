@@ -107,14 +107,14 @@ const Dashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+        <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
           Sistema de Gestión de Inventarios - Resumen General
         </p>
       </motion.div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -149,28 +149,28 @@ const Dashboard = () => {
       {/* KPIs Analíticos */}
       {kpis?.kpis && (
         <Card title="Indicadores de Negocio">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Ventas Totales</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">
+              <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 ${kpis.kpis.total_ventas?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Ticket Promedio</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">
+              <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 ${kpis.kpis.ticket_promedio?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Productos Activos</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">
+              <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 {kpis.kpis.productos_activos?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Clientes Activos</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">
+              <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 {kpis.kpis.clientes_activos?.toLocaleString() || "0"}
               </p>
             </div>
@@ -181,62 +181,64 @@ const Dashboard = () => {
       {/* Órdenes Recientes */}
       <Card title="Órdenes Recientes">
         {ordenesRecientes.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead>
-                <tr>
-                  <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
-                    Número Orden
-                  </th>
-                  <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
-                    Cliente
-                  </th>
-                  <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
-                    Estado
-                  </th>
-                  <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
-                    Total
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                {ordenesRecientes.map((orden, index) => (
-                  <motion.tr
-                    key={orden.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ backgroundColor: "#f9fafb" }}
-                    className="dark:hover:bg-gray-700"
-                  >
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                      {orden.numeroOrden}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                      {orden.clienteNombre || `Cliente #${orden.clienteId}`}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span
-                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                          orden.estado === "ENTREGADO"
-                            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                            : orden.estado === "PROCESANDO"
-                            ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                            : orden.estado === "PENDIENTE"
-                            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                            : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
-                        }`}
-                      >
-                        {orden.estado}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">
-                      ${orden.total?.toFixed(2) || "0.00"}
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="overflow-x-auto -mx-6">
+            <div className="inline-block min-w-full align-middle px-6">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead>
+                  <tr>
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
+                      Número Orden
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase hidden sm:table-cell">
+                      Cliente
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
+                      Estado
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                  {ordenesRecientes.map((orden, index) => (
+                    <motion.tr
+                      key={orden.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ backgroundColor: "#f9fafb" }}
+                      className="dark:hover:bg-gray-700"
+                    >
+                      <td className="px-3 sm:px-6 py-4 text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                        {orden.numeroOrden}
+                      </td>
+                      <td className="px-3 sm:px-6 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap hidden sm:table-cell">
+                        {orden.clienteNombre || `Cliente #${orden.clienteId}`}
+                      </td>
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
+                        <span
+                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                            orden.estado === "ENTREGADO"
+                              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                              : orden.estado === "PROCESANDO"
+                              ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                              : orden.estado === "PENDIENTE"
+                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                              : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                          }`}
+                        >
+                          {orden.estado}
+                        </span>
+                      </td>
+                      <td className="px-3 sm:px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">
+                        ${orden.total?.toFixed(2) || "0.00"}
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         ) : (
           <div className="flex items-center justify-center h-32 text-gray-500 dark:text-gray-400">
@@ -248,7 +250,7 @@ const Dashboard = () => {
 
       {/* Información del Sistema */}
       <Card title="Estado del Sistema" delay={0.6}>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {["Servicio de Productos", "Servicio de Órdenes", "Servicio de Proveedores"].map((service, index) => (
             <motion.div
               key={service}
@@ -260,9 +262,9 @@ const Dashboard = () => {
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-3 h-3 bg-green-500 rounded-full"
+                className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"
               />
-              <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">{service}</span>
+              <span className="ml-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">{service}</span>
             </motion.div>
           ))}
         </div>
