@@ -24,7 +24,7 @@ export default function TextArea({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
           htmlFor={name}
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          className="block text-sm font-medium text-gray-700 dark:text-slate-100 mb-1"
         >
           {label} {required && <span className="text-red-500 dark:text-red-400">*</span>}
         </motion.label>
@@ -40,7 +40,7 @@ export default function TextArea({
         required={required}
         disabled={disabled}
         rows={rows}
-        className={`w-full px-3 py-2 bg-white dark:bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-gray-900 disabled:cursor-not-allowed transition-all text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 resize-none ${
+        className={`w-full px-3 py-2 bg-white dark:bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-gray-900 disabled:cursor-not-allowed transition-all text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300 resize-none ${
           error ? "border-red-500 dark:border-red-400" : "border-gray-300 dark:border-gray-600"
         }`}
       />

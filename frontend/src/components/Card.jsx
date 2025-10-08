@@ -10,9 +10,9 @@ const Card = ({ title, children, className = "", delay = 0 }) => {
       className={`bg-white dark:bg-slate-900 rounded-lg shadow-md dark:shadow-slate-950/50 border border-gray-200 dark:border-slate-700 p-4 sm:p-6 ${className}`}
     >
       {title && (
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-100 mb-4">{title}</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{title}</h3>
       )}
-      <div className="text-gray-700 dark:text-slate-300">{children}</div>
+      <div className="text-gray-700 dark:text-slate-200">{children}</div>
     </motion.div>
   );
 };

@@ -45,7 +45,7 @@ export default function Modal({
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={onClose}
-                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1"
+                  className="text-gray-400 hover:text-gray-600 dark:text-slate-300 dark:hover:text-white transition-colors p-1"
                 >
                   <X size={20} className="sm:w-6 sm:h-6" />
                 </motion.button>

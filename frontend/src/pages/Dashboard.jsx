@@ -62,7 +62,7 @@ const Dashboard = () => {
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
           className="w-12 h-12 border-4 border-blue-500 dark:border-blue-400 border-t-transparent rounded-full"
         />
-        <div className="ml-4 text-lg text-gray-600 dark:text-gray-300">Cargando dashboard...</div>
+        <div className="ml-4 text-lg text-gray-600 dark:text-slate-200">Cargando dashboard...</div>
       </motion.div>
     );
   }
@@ -108,7 +108,7 @@ const Dashboard = () => {
         transition={{ duration: 0.6 }}
       >
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-        <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-slate-200">
           Sistema de Gestión de Inventarios - Resumen General
         </p>
       </motion.div>
@@ -128,7 +128,7 @@ const Dashboard = () => {
                   <Icon className="w-6 h-6 text-white" />
                 </motion.div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
                     {stat.name}
                   </p>
                   <motion.p
@@ -151,25 +151,25 @@ const Dashboard = () => {
         <Card title="Indicadores de Negocio">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Ventas Totales</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">Ventas Totales</p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 ${kpis.kpis.total_ventas?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Ticket Promedio</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">Ticket Promedio</p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 ${kpis.kpis.ticket_promedio?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Productos Activos</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">Productos Activos</p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 {kpis.kpis.productos_activos?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Clientes Activos</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">Clientes Activos</p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 {kpis.kpis.clientes_activos?.toLocaleString() || "0"}
               </p>
@@ -186,16 +186,16 @@ const Dashboard = () => {
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                   <tr>
-                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-slate-200 uppercase">
                       Número Orden
                     </th>
-                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase hidden sm:table-cell">
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-slate-200 uppercase hidden sm:table-cell">
                       Cliente
                     </th>
-                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-slate-200 uppercase">
                       Estado
                     </th>
-                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-gray-400 uppercase">
+                    <th className="px-3 sm:px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-slate-200 uppercase">
                       Total
                     </th>
                   </tr>
@@ -213,7 +213,7 @@ const Dashboard = () => {
                       <td className="px-3 sm:px-6 py-4 text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
                         {orden.numeroOrden}
                       </td>
-                      <td className="px-3 sm:px-6 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap hidden sm:table-cell">
+                      <td className="px-3 sm:px-6 py-4 text-sm text-gray-500 dark:text-slate-200 whitespace-nowrap hidden sm:table-cell">
                         {orden.clienteNombre || `Cliente #${orden.clienteId}`}
                       </td>
                       <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
@@ -241,7 +241,7 @@ const Dashboard = () => {
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center h-32 text-gray-500 dark:text-gray-400">
+          <div className="flex items-center justify-center h-32 text-gray-500 dark:text-slate-200">
             <AlertCircle className="w-5 h-5 mr-2" />
             No hay órdenes recientes
           </div>
