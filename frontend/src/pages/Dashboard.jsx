@@ -220,12 +220,12 @@ const Dashboard = () => {
                         <span
                           className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                             orden.estado === "ENTREGADO"
-                              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                              ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400 dark:ring-1 dark:ring-emerald-500/50"
                               : orden.estado === "PROCESANDO"
-                              ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                              ? "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-400 dark:ring-1 dark:ring-blue-500/50"
                               : orden.estado === "PENDIENTE"
-                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                              : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                              ? "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400 dark:ring-1 dark:ring-amber-500/50"
+                              : "bg-gray-100 text-gray-700 dark:bg-slate-700/50 dark:text-slate-300 dark:ring-1 dark:ring-slate-600/50"
                           }`}
                         >
                           {orden.estado}
@@ -262,9 +262,9 @@ const Dashboard = () => {
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"
+                className="w-3 h-3 bg-emerald-500 dark:bg-emerald-400 rounded-full flex-shrink-0 shadow-sm shadow-emerald-500/50"
               />
-              <span className="ml-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">{service}</span>
+              <span className="ml-2 text-xs sm:text-sm text-gray-600 dark:text-slate-300">{service}</span>
             </motion.div>
           ))}
         </div>

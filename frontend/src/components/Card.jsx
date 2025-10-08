@@ -5,16 +5,14 @@ const Card = ({ title, children, className = "", delay = 0 }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay }}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className={`bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/50 overflow-hidden hover:shadow-xl dark:hover:shadow-gray-900/70 transition-shadow ${className}`}
+      transition={{ duration: 0.3 }}
+      whileHover={{ y: -4 }}
+      className={`bg-white dark:bg-slate-900 rounded-lg shadow-md dark:shadow-slate-950/50 border border-gray-200 dark:border-slate-700 p-4 sm:p-6 ${className}`}
     >
       {title && (
-        <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
-        </div>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-100 mb-4">{title}</h3>
       )}
-      <div className="p-4 sm:p-6">{children}</div>
+      <div className="text-gray-700 dark:text-slate-300">{children}</div>
     </motion.div>
   );
 };

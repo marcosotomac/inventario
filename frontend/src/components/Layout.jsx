@@ -30,19 +30,19 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950 transition-colors">
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center justify-between">
-        <h1 className="text-lg font-bold text-gray-900 dark:text-white">Sistema Inventario</h1>
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 px-4 py-3 flex items-center justify-between shadow-sm dark:shadow-slate-900/50">
+        <h1 className="text-lg font-bold text-gray-900 dark:text-slate-100">Sistema Inventario</h1>
         <motion.button
           whileTap={{ scale: 0.95 }}
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
         >
           {sidebarOpen ? (
-            <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <X className="w-6 h-6 text-gray-700 dark:text-slate-300" />
           ) : (
-            <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <Menu className="w-6 h-6 text-gray-700 dark:text-slate-300" />
           )}
         </motion.button>
       </div>
@@ -67,7 +67,7 @@ const Layout = () => {
           x: sidebarOpen || window.innerWidth >= 1024 ? 0 : -264 
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="fixed inset-y-0 left-0 w-64 bg-gray-900 dark:bg-gray-950 shadow-xl z-50 lg:z-30"
+        className="fixed inset-y-0 left-0 w-64 bg-slate-900 dark:bg-slate-950 shadow-xl z-50 lg:z-30 border-r border-slate-800 dark:border-slate-800"
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
@@ -75,7 +75,7 @@ const Layout = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="flex items-center justify-between px-4 h-16 bg-gray-800 dark:bg-gray-900 border-b border-gray-700"
+            className="flex items-center justify-between px-4 h-16 bg-slate-800 dark:bg-slate-900 border-b border-slate-700"
           >
             <h1 className="text-xl font-bold text-white">Sistema Inventario</h1>
           </motion.div>
@@ -94,10 +94,10 @@ const Layout = () => {
                   <Link
                     to={item.href}
                     onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                    className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all ${
                       isActive(item.href)
-                        ? "bg-primary-600 text-white"
-                        : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/50"
+                        : "text-slate-300 hover:bg-slate-800 dark:hover:bg-slate-800 hover:text-white"
                     }`}
                   >
                     <motion.div
@@ -118,14 +118,14 @@ const Layout = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="p-4 border-t border-gray-800 dark:border-gray-700"
+            className="p-4 border-t border-slate-700 dark:border-slate-800"
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs text-gray-400">Tema</span>
+              <span className="text-xs text-slate-400">Tema</span>
               <ThemeToggle />
             </div>
-            <p className="text-xs text-gray-400">CS2032 Cloud Computing</p>
-            <p className="mt-1 text-xs text-gray-400">Ciclo 2025-2</p>
+            <p className="text-xs text-slate-400">CS2032 Cloud Computing</p>
+            <p className="mt-1 text-xs text-slate-400">Ciclo 2025-2</p>
           </motion.div>
         </div>
       </motion.div>

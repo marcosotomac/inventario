@@ -28,9 +28,9 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
   return (
     <div className="overflow-x-auto -mx-4 sm:mx-0">
       <div className="inline-block min-w-full align-middle">
-        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-800">
+        <div className="overflow-hidden shadow-md ring-1 ring-gray-200 dark:ring-slate-700 sm:rounded-lg">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-700">
+            <thead className="bg-gray-50 dark:bg-slate-800">
               <motion.tr
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -42,14 +42,14 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-slate-300 uppercase tracking-wider"
                   >
                     {column.label}
                   </motion.th>
                 ))}
               </motion.tr>
             </thead>
-            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="bg-white dark:bg-slate-900 divide-y divide-gray-200 dark:divide-slate-700">
               {data.map((row, idx) => (
                 <motion.tr
                   key={row.id || idx}
@@ -63,13 +63,13 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
                       : undefined
                   }
                   className={
-                    onRowClick ? "cursor-pointer transition-colors dark:hover:bg-gray-700" : ""
+                    onRowClick ? "cursor-pointer transition-colors dark:hover:bg-slate-800" : ""
                   }
                 >
                   {columns.map((column) => (
                     <td
                       key={column.key}
-                      className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
+                      className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-slate-100"
                     >
                       {column.render ? column.render(row) : row[column.key]}
                     </td>
