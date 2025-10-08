@@ -1,13 +1,29 @@
 package com.inventario.ordenes.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "detalles_orden")
+@Table(name = "detalles_orden", indexes = {
+    @Index(name = "idx_orden_id", columnList = "orden_id"),
+    @Index(name = "idx_producto_id", columnList = "producto_id"),
+    @Index(name = "idx_orden_producto", columnList = "orden_id, producto_id")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

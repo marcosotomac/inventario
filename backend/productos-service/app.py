@@ -22,6 +22,10 @@ db = SQLAlchemy(app)
 
 class Categoria(db.Model):
     __tablename__ = 'categorias'
+    __table_args__ = (
+        db.Index('idx_categoria_nombre', 'nombre'),
+    )
+    
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False, unique=True)
     descripcion = db.Column(db.Text)
@@ -30,6 +34,15 @@ class Categoria(db.Model):
 
 class Producto(db.Model):
     __tablename__ = 'productos'
+    __table_args__ = (
+        db.Index('idx_producto_nombre', 'nombre'),
+        db.Index('idx_producto_categoria_id', 'categoria_id'),
+        db.Index('idx_producto_sku', 'sku'),
+        db.Index('idx_producto_proveedor', 'proveedor'),
+        db.Index('idx_producto_fecha_creacion', 'fecha_creacion'),
+        db.Index('idx_producto_stock', 'stock'),
+    )
+    
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(200), nullable=False)
     descripcion = db.Column(db.Text)
