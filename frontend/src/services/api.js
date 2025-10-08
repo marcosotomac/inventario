@@ -2,7 +2,7 @@ import axios from "axios";
 
 // URLs base de los servicios
 const BASE_URLS = {
-  productos: import.meta.env.VITE_PRODUCTOS_URL || "http://localhost:5001",
+  productos: import.meta.env.VITE_PRODUCTOS_URL || "https://jqxrygdsv7.execute-api.us-east-1.amazonaws.com/ms1",
   ordenes: import.meta.env.VITE_ORDENES_URL || "http://localhost:8080",
   proveedores: import.meta.env.VITE_PROVEEDORES_URL || "http://localhost:3000",
   integracion: import.meta.env.VITE_INTEGRACION_URL || "http://localhost:8000",
