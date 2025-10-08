@@ -136,8 +136,8 @@ const Proveedores = () => {
       label: "Empresa",
       render: (row) => (
         <div>
-          <div className="font-medium text-gray-900">{row.nombre}</div>
-          <div className="text-sm text-gray-500">
+          <div className="font-medium text-gray-900 dark:text-white">{row.nombre}</div>
+          <div className="text-sm text-gray-500 dark:text-slate-300">
             {row.contacto?.nombre || row.ruc || "N/A"}
           </div>
         </div>
@@ -148,10 +148,10 @@ const Proveedores = () => {
       label: "Contacto",
       render: (row) => (
         <div>
-          <div className="text-sm text-gray-900">
+          <div className="text-sm text-gray-900 dark:text-white">
             {row.contacto?.email || row.email || "N/A"}
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 dark:text-slate-300">
             {row.contacto?.telefono || row.telefono || "N/A"}
           </div>
         </div>
@@ -164,7 +164,7 @@ const Proveedores = () => {
         const ciudad = row.direccion?.ciudad || row.ciudad;
         const pais = row.direccion?.pais || row.pais;
         return (
-          <div className="text-sm text-gray-900">
+          <div className="text-sm text-gray-900 dark:text-white">
             {ciudad && pais ? `${ciudad}, ${pais}` : ciudad || pais || "N/A"}
           </div>
         );
@@ -177,8 +177,8 @@ const Proveedores = () => {
         const rating = row.calificacion || row.rating;
         return (
           <div className="flex items-center gap-1">
-            <Star size={16} className="text-yellow-500 fill-yellow-500" />
-            <span className="text-sm font-medium">
+            <Star size={16} className="text-yellow-500 fill-yellow-500 dark:text-yellow-400 dark:fill-yellow-400" />
+            <span className="text-sm font-medium dark:text-white">
               {rating ? rating.toFixed(1) : "N/A"}
             </span>
           </div>
@@ -189,7 +189,7 @@ const Proveedores = () => {
       key: "categorias",
       label: "Categorías",
       render: (row) => (
-        <span className="text-sm text-gray-600">
+        <span className="text-sm text-gray-600 dark:text-slate-200">
           {Array.isArray(row.categorias)
             ? row.categorias.length
             : Array.isArray(row.productos_suministrados)
@@ -266,8 +266,8 @@ const Proveedores = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Proveedores</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Proveedores</h1>
+          <p className="mt-2 text-gray-600 dark:text-slate-200">
             Gestión de proveedores y suministros
           </p>
         </div>
@@ -285,10 +285,10 @@ const Proveedores = () => {
               <Truck className="w-8 h-8 text-blue-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
                 Total Proveedores
               </p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {proveedores.length}
               </p>
             </div>
@@ -297,8 +297,8 @@ const Proveedores = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Activos</p>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Activos</p>
+              <p className="text-2xl font-bold text-green-600 dark:text-emerald-400">
                 {proveedoresActivos}
               </p>
             </div>
@@ -307,8 +307,8 @@ const Proveedores = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Inactivos</p>
-              <p className="text-2xl font-bold text-red-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Inactivos</p>
+              <p className="text-2xl font-bold text-red-600 dark:text-red-400">
                 {proveedoresInactivos}
               </p>
             </div>
@@ -317,13 +317,13 @@ const Proveedores = () => {
         <Card>
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Star className="w-8 h-8 text-yellow-500 fill-yellow-500" />
+              <Star className="w-8 h-8 text-yellow-500 fill-yellow-500 dark:text-yellow-400 dark:fill-yellow-400" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
                 Rating Promedio
               </p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {ratingPromedio}
               </p>
             </div>
@@ -336,13 +336,13 @@ const Proveedores = () => {
         <div className="flex items-center space-x-4">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute w-5 h-5 text-gray-400 left-3 top-3" />
+              <Search className="absolute w-5 h-5 text-gray-400 dark:text-slate-400 left-3 top-3" />
               <input
                 type="text"
                 placeholder="Buscar proveedores por nombre, ciudad o país..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full py-2 pl-10 pr-4 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
           </div>

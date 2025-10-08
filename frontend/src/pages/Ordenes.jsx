@@ -251,8 +251,8 @@ const Ordenes = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Órdenes</h1>
-          <p className="mt-2 text-gray-600">Gestión de órdenes y clientes</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Órdenes</h1>
+          <p className="mt-2 text-gray-600 dark:text-slate-200">Gestión de órdenes y clientes</p>
         </div>
         <div className="flex gap-3">
           <Button onClick={() => setShowClienteForm(true)} variant="outline">
@@ -274,8 +274,8 @@ const Ordenes = () => {
               <ShoppingCart className="w-8 h-8 text-blue-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Total Órdenes</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Total Órdenes</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {ordenes.length}
               </p>
             </div>
@@ -284,8 +284,8 @@ const Ordenes = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Pendientes</p>
-              <p className="text-2xl font-bold text-yellow-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Pendientes</p>
+              <p className="text-2xl font-bold text-yellow-600 dark:text-amber-400">
                 {ordenesPendientes}
               </p>
             </div>
@@ -294,8 +294,8 @@ const Ordenes = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Entregadas</p>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Entregadas</p>
+              <p className="text-2xl font-bold text-green-600 dark:text-emerald-400">
                 {ordenesEntregadas}
               </p>
             </div>
@@ -304,10 +304,10 @@ const Ordenes = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
                 Ventas Totales
               </p>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-2xl font-bold text-green-600 dark:text-emerald-400">
                 S/ {totalVentas.toFixed(2)}
               </p>
             </div>
@@ -320,13 +320,13 @@ const Ordenes = () => {
         <div className="flex items-center space-x-4">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute w-5 h-5 text-gray-400 left-3 top-3" />
+              <Search className="absolute w-5 h-5 text-gray-400 dark:text-slate-400 left-3 top-3" />
               <input
                 type="text"
                 placeholder="Buscar órdenes por cliente o estado..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full py-2 pl-10 pr-4 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
           </div>

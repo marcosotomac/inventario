@@ -245,8 +245,8 @@ const Productos = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Productos</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Productos</h1>
+          <p className="mt-2 text-gray-600 dark:text-slate-200">
             Gestión de inventario de productos
           </p>
         </div>
@@ -270,10 +270,10 @@ const Productos = () => {
               <Package className="w-8 h-8 text-blue-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
                 Total Productos
               </p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {productos.length}
               </p>
             </div>
@@ -282,8 +282,8 @@ const Productos = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Categorías</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Categorías</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {categorias.length}
               </p>
             </div>
@@ -292,8 +292,8 @@ const Productos = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Stock Bajo</p>
-              <p className="text-2xl font-bold text-red-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Stock Bajo</p>
+              <p className="text-2xl font-bold text-red-600 dark:text-red-400">
                 {productos.filter((p) => p.stock < 20).length}
               </p>
             </div>
@@ -302,8 +302,8 @@ const Productos = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Valor Total</p>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Valor Total</p>
+              <p className="text-2xl font-bold text-green-600 dark:text-green-400">
                 S/{" "}
                 {productos
                   .reduce((acc, p) => acc + p.precio * p.stock, 0)
@@ -319,13 +319,13 @@ const Productos = () => {
         <div className="flex items-center space-x-4">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute w-5 h-5 text-gray-400 left-3 top-3" />
+              <Search className="absolute w-5 h-5 text-gray-400 dark:text-slate-400 left-3 top-3" />
               <input
                 type="text"
                 placeholder="Buscar productos por nombre, categoría, SKU o proveedor..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full py-2 pl-10 pr-4 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
           </div>

@@ -61,13 +61,10 @@ const Layout = () => {
       </AnimatePresence>
 
       {/* Sidebar */}
-      <motion.div
-        initial={{ x: -264 }}
-        animate={{ 
-          x: sidebarOpen || window.innerWidth >= 1024 ? 0 : -264 
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="fixed inset-y-0 left-0 w-64 bg-slate-900 dark:bg-slate-950 shadow-xl z-50 lg:z-30 border-r border-slate-800 dark:border-slate-800"
+      <div
+        className={`fixed inset-y-0 left-0 w-64 bg-slate-900 dark:bg-slate-950 shadow-xl z-50 lg:z-30 border-r border-slate-800 dark:border-slate-800 transition-transform duration-300 ease-out ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0`}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
@@ -128,7 +125,7 @@ const Layout = () => {
             <p className="mt-1 text-xs text-slate-400">Ciclo 2025-2</p>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Main Content */}
       <div className="lg:pl-64 pt-14 lg:pt-0">

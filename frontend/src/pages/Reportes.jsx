@@ -84,7 +84,7 @@ const Reportes = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-lg text-gray-600">Cargando reportes...</div>
+        <div className="text-lg text-gray-600 dark:text-slate-200">Cargando reportes...</div>
       </div>
     );
   }
@@ -92,10 +92,10 @@ const Reportes = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
           Reportes Analíticos
         </h1>
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-gray-600 dark:text-slate-200">
           Análisis de ventas, inventario y rentabilidad
         </p>
       </div>
@@ -123,7 +123,7 @@ const Reportes = () => {
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex items-center justify-center h-64 text-gray-500">
+          <div className="flex items-center justify-center h-64 text-gray-500 dark:text-slate-200">
             <Package className="w-5 h-5 mr-2" />
             Datos no disponibles (Athena no configurado)
           </div>
@@ -138,26 +138,26 @@ const Reportes = () => {
               {productosMasVendidos.map((producto, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800 rounded-lg"
                 >
                   <div className="flex items-center">
                     <div className="flex items-center justify-center w-8 h-8 mr-3 text-white rounded-full bg-primary-600">
                       {index + 1}
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
                         {producto.producto}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-500 dark:text-slate-300">
                         {producto.categoria}
                       </p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
                       {producto.cantidad_vendida} unidades
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 dark:text-slate-300">
                       $
                       {parseFloat(
                         producto.ingresos_totales || 0
@@ -168,7 +168,7 @@ const Reportes = () => {
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center h-64 text-gray-500">
+            <div className="flex items-center justify-center h-64 text-gray-500 dark:text-slate-200">
               <TrendingUp className="w-5 h-5 mr-2" />
               Datos no disponibles
             </div>
@@ -182,29 +182,29 @@ const Reportes = () => {
               {rentabilidadProveedores.map((proveedor, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800 rounded-lg"
                 >
                   <div className="flex items-center">
                     <div className="flex items-center justify-center w-8 h-8 mr-3 text-white bg-green-600 rounded-full">
                       {index + 1}
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
                         {proveedor.proveedor}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-500 dark:text-slate-300">
                         {proveedor.productos_ofrecidos} productos
                       </p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
                       $
                       {parseFloat(
                         proveedor.ingresos_totales || 0
                       ).toLocaleString()}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 dark:text-slate-300">
                       {proveedor.ordenes_totales} órdenes
                     </p>
                   </div>
@@ -212,7 +212,7 @@ const Reportes = () => {
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center h-64 text-gray-500">
+            <div className="flex items-center justify-center h-64 text-gray-500 dark:text-slate-200">
               <DollarSign className="w-5 h-5 mr-2" />
               Datos no disponibles
             </div>
@@ -222,11 +222,11 @@ const Reportes = () => {
 
       {/* Información */}
       <Card>
-        <div className="p-4 bg-blue-50 rounded-lg">
-          <h4 className="text-sm font-medium text-blue-900">
+        <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+          <h4 className="text-sm font-medium text-blue-900 dark:text-blue-300">
             📊 Nota sobre Reportes Analíticos
           </h4>
-          <p className="mt-2 text-sm text-blue-700">
+          <p className="mt-2 text-sm text-blue-700 dark:text-blue-200">
             Los reportes analíticos se generan mediante consultas a AWS Athena.
             Para visualizar datos reales, asegúrate de tener configurado:
           </p>
