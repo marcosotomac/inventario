@@ -251,8 +251,12 @@ const Ordenes = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Órdenes</h1>
-          <p className="mt-2 text-gray-600 dark:text-slate-200">Gestión de órdenes y clientes</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Órdenes
+          </h1>
+          <p className="mt-2 text-gray-600 dark:text-slate-200">
+            Gestión de órdenes y clientes
+          </p>
         </div>
         <div className="flex gap-3">
           <Button onClick={() => setShowClienteForm(true)} variant="outline">
@@ -274,7 +278,9 @@ const Ordenes = () => {
               <ShoppingCart className="w-8 h-8 text-blue-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Total Órdenes</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Total Órdenes
+              </p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {ordenes.length}
               </p>
@@ -284,7 +290,9 @@ const Ordenes = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Pendientes</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Pendientes
+              </p>
               <p className="text-2xl font-bold text-yellow-600 dark:text-amber-400">
                 {ordenesPendientes}
               </p>
@@ -294,7 +302,9 @@ const Ordenes = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Entregadas</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Entregadas
+              </p>
               <p className="text-2xl font-bold text-green-600 dark:text-emerald-400">
                 {ordenesEntregadas}
               </p>

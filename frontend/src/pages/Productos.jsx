@@ -245,7 +245,9 @@ const Productos = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Productos</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Productos
+          </h1>
           <p className="mt-2 text-gray-600 dark:text-slate-200">
             Gestión de inventario de productos
           </p>
@@ -282,7 +284,9 @@ const Productos = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Categorías</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Categorías
+              </p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {categorias.length}
               </p>
@@ -292,7 +296,9 @@ const Productos = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Stock Bajo</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Stock Bajo
+              </p>
               <p className="text-2xl font-bold text-red-600 dark:text-red-400">
                 {productos.filter((p) => p.stock < 20).length}
               </p>
@@ -302,7 +308,9 @@ const Productos = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Valor Total</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Valor Total
+              </p>
               <p className="text-2xl font-bold text-green-600 dark:text-green-400">
                 S/{" "}
                 {productos

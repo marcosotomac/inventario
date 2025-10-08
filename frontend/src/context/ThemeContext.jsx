@@ -24,13 +24,13 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     const root = window.document.documentElement;
-    
+
     // Remover clases anteriores
     root.classList.remove("light", "dark");
-    
+
     // Agregar clase del tema actual
     root.classList.add(theme);
-    
+
     // Guardar en localStorage
     localStorage.setItem("theme", theme);
   }, [theme]);

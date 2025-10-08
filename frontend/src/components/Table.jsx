@@ -59,11 +59,16 @@ export default function Table({ columns, data, onRowClick, loading = false }) {
                   onClick={() => onRowClick && onRowClick(row)}
                   whileHover={
                     onRowClick
-                      ? { backgroundColor: "rgba(249, 250, 251, 0.5)", scale: 1.01 }
+                      ? {
+                          backgroundColor: "rgba(249, 250, 251, 0.5)",
+                          scale: 1.01,
+                        }
                       : undefined
                   }
                   className={
-                    onRowClick ? "cursor-pointer transition-colors dark:hover:bg-slate-800" : ""
+                    onRowClick
+                      ? "cursor-pointer transition-colors dark:hover:bg-slate-800"
+                      : ""
                   }
                 >
                   {columns.map((column) => (

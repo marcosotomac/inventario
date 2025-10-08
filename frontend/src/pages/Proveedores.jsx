@@ -136,7 +136,9 @@ const Proveedores = () => {
       label: "Empresa",
       render: (row) => (
         <div>
-          <div className="font-medium text-gray-900 dark:text-white">{row.nombre}</div>
+          <div className="font-medium text-gray-900 dark:text-white">
+            {row.nombre}
+          </div>
           <div className="text-sm text-gray-500 dark:text-slate-300">
             {row.contacto?.nombre || row.ruc || "N/A"}
           </div>
@@ -177,7 +179,10 @@ const Proveedores = () => {
         const rating = row.calificacion || row.rating;
         return (
           <div className="flex items-center gap-1">
-            <Star size={16} className="text-yellow-500 fill-yellow-500 dark:text-yellow-400 dark:fill-yellow-400" />
+            <Star
+              size={16}
+              className="text-yellow-500 fill-yellow-500 dark:text-yellow-400 dark:fill-yellow-400"
+            />
             <span className="text-sm font-medium dark:text-white">
               {rating ? rating.toFixed(1) : "N/A"}
             </span>
@@ -266,7 +271,9 @@ const Proveedores = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Proveedores</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Proveedores
+          </h1>
           <p className="mt-2 text-gray-600 dark:text-slate-200">
             Gestión de proveedores y suministros
           </p>
@@ -297,7 +304,9 @@ const Proveedores = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Activos</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Activos
+              </p>
               <p className="text-2xl font-bold text-green-600 dark:text-emerald-400">
                 {proveedoresActivos}
               </p>
@@ -307,7 +316,9 @@ const Proveedores = () => {
         <Card>
           <div className="flex items-center">
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">Inactivos</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-200">
+                Inactivos
+              </p>
               <p className="text-2xl font-bold text-red-600 dark:text-red-400">
                 {proveedoresInactivos}
               </p>

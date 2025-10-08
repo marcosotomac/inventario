@@ -26,7 +26,10 @@ export default function Select({
           htmlFor={name}
           className="block text-sm font-medium text-gray-700 dark:text-slate-100 mb-1"
         >
-          {label} {required && <span className="text-red-500 dark:text-red-400">*</span>}
+          {label}{" "}
+          {required && (
+            <span className="text-red-500 dark:text-red-400">*</span>
+          )}
         </motion.label>
       )}
       <motion.select
@@ -39,12 +42,20 @@ export default function Select({
         required={required}
         disabled={disabled}
         className={`w-full px-3 py-2 bg-white dark:bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-gray-900 disabled:cursor-not-allowed transition-all text-gray-900 dark:text-white ${
-          error ? "border-red-500 dark:border-red-400" : "border-gray-300 dark:border-gray-600"
+          error
+            ? "border-red-500 dark:border-red-400"
+            : "border-gray-300 dark:border-gray-600"
         }`}
       >
-        <option value="" className="dark:bg-gray-800">{placeholder}</option>
+        <option value="" className="dark:bg-gray-800">
+          {placeholder}
+        </option>
         {options.map((option) => (
-          <option key={option.value} value={option.value} className="dark:bg-gray-800">
+          <option
+            key={option.value}
+            value={option.value}
+            className="dark:bg-gray-800"
+          >
             {option.label}
           </option>
         ))}

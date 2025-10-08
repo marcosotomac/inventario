@@ -62,7 +62,9 @@ const Dashboard = () => {
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
           className="w-12 h-12 border-4 border-blue-500 dark:border-blue-400 border-t-transparent rounded-full"
         />
-        <div className="ml-4 text-lg text-gray-600 dark:text-slate-200">Cargando dashboard...</div>
+        <div className="ml-4 text-lg text-gray-600 dark:text-slate-200">
+          Cargando dashboard...
+        </div>
       </motion.div>
     );
   }
@@ -107,7 +109,9 @@ const Dashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+          Dashboard
+        </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-slate-200">
           Sistema de Gestión de Inventarios - Resumen General
         </p>
@@ -151,25 +155,33 @@ const Dashboard = () => {
         <Card title="Indicadores de Negocio">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <p className="text-sm text-gray-600 dark:text-slate-200">Ventas Totales</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">
+                Ventas Totales
+              </p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 ${kpis.kpis.total_ventas?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-slate-200">Ticket Promedio</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">
+                Ticket Promedio
+              </p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 ${kpis.kpis.ticket_promedio?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-slate-200">Productos Activos</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">
+                Productos Activos
+              </p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 {kpis.kpis.productos_activos?.toLocaleString() || "0"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-slate-200">Clientes Activos</p>
+              <p className="text-sm text-gray-600 dark:text-slate-200">
+                Clientes Activos
+              </p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 {kpis.kpis.clientes_activos?.toLocaleString() || "0"}
               </p>
@@ -251,7 +263,11 @@ const Dashboard = () => {
       {/* Información del Sistema */}
       <Card title="Estado del Sistema" delay={0.6}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-          {["Servicio de Productos", "Servicio de Órdenes", "Servicio de Proveedores"].map((service, index) => (
+          {[
+            "Servicio de Productos",
+            "Servicio de Órdenes",
+            "Servicio de Proveedores",
+          ].map((service, index) => (
             <motion.div
               key={service}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -264,7 +280,9 @@ const Dashboard = () => {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-3 h-3 bg-emerald-500 dark:bg-emerald-400 rounded-full flex-shrink-0 shadow-sm shadow-emerald-500/50"
               />
-              <span className="ml-2 text-xs sm:text-sm text-gray-600 dark:text-slate-300">{service}</span>
+              <span className="ml-2 text-xs sm:text-sm text-gray-600 dark:text-slate-300">
+                {service}
+              </span>
             </motion.div>
           ))}
         </div>

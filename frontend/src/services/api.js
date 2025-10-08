@@ -13,7 +13,7 @@ const BASE_URLS = {
 const createAxiosInstance = (baseURL) => {
   const instance = axios.create({
     baseURL,
-    timeout: 30000, // Aumentado a 30 segundos para manejar respuestas grandes
+    timeout: 80000, // Aumentado a 30 segundos para manejar respuestas grandes
     headers: {
       "Content-Type": "application/json",
     },
