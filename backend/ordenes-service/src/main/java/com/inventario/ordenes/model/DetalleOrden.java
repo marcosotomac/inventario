@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "detalles_orden", indexes = {
-    @Index(name = "idx_orden_id", columnList = "orden_id"),
-    @Index(name = "idx_producto_id", columnList = "producto_id"),
-    @Index(name = "idx_orden_producto", columnList = "orden_id, producto_id")
+        @Index(name = "idx_orden_id", columnList = "orden_id"),
+        @Index(name = "idx_producto_id", columnList = "producto_id"),
+        @Index(name = "idx_orden_producto", columnList = "orden_id, producto_id")
 })
 @Data
 @NoArgsConstructor

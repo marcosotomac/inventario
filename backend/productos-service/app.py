@@ -25,7 +25,7 @@ class Categoria(db.Model):
     __table_args__ = (
         db.Index('idx_categoria_nombre', 'nombre'),
     )
-    
+
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False, unique=True)
     descripcion = db.Column(db.Text)
@@ -42,7 +42,7 @@ class Producto(db.Model):
         db.Index('idx_producto_fecha_creacion', 'fecha_creacion'),
         db.Index('idx_producto_stock', 'stock'),
     )
-    
+
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(200), nullable=False)
     descripcion = db.Column(db.Text)

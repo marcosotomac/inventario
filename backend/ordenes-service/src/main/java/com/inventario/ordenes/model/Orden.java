@@ -27,11 +27,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "ordenes", indexes = {
-    @Index(name = "idx_numero_orden", columnList = "numero_orden"),
-    @Index(name = "idx_cliente_id", columnList = "cliente_id"),
-    @Index(name = "idx_estado", columnList = "estado"),
-    @Index(name = "idx_fecha_orden", columnList = "fecha_orden"),
-    @Index(name = "idx_cliente_estado", columnList = "cliente_id, estado")
+        @Index(name = "idx_numero_orden", columnList = "numero_orden"),
+        @Index(name = "idx_cliente_id", columnList = "cliente_id"),
+        @Index(name = "idx_estado", columnList = "estado"),
+        @Index(name = "idx_fecha_orden", columnList = "fecha_orden"),
+        @Index(name = "idx_cliente_estado", columnList = "cliente_id, estado")
 })
 @Data
 @NoArgsConstructor

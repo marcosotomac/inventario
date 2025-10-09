@@ -9,6 +9,7 @@ import {
   BarChart3,
   Menu,
   X,
+  Home,
 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
@@ -17,7 +18,7 @@ const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const navigation = [
-    { name: "Dashboard", href: "/", icon: LayoutDashboard },
+    { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Productos", href: "/productos", icon: Package },
     { name: "Órdenes", href: "/ordenes", icon: ShoppingCart },
     { name: "Proveedores", href: "/proveedores", icon: Truck },
@@ -25,7 +26,7 @@ const Layout = () => {
   ];
 
   const isActive = (path) => {
-    if (path === "/") return location.pathname === "/";
+    if (path === "/dashboard") return location.pathname === "/dashboard";
     return location.pathname.startsWith(path);
   };
 
@@ -74,9 +75,20 @@ const Layout = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="flex items-center justify-between px-4 h-16 bg-slate-800 dark:bg-slate-900 border-b border-slate-700"
+            className="px-4 py-4 bg-slate-800 dark:bg-slate-900 border-b border-slate-700"
           >
-            <h1 className="text-xl font-bold text-white">Sistema Inventario</h1>
+            <h1 className="text-xl font-bold text-white mb-3">Sistema Inventario</h1>
+            <Link to="/">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setSidebarOpen(false)}
+                className="w-full flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-500/10 to-purple-600/10 hover:from-blue-500/20 hover:to-purple-600/20 border border-blue-500/30 text-blue-400 rounded-lg transition-all group"
+              >
+                <Home className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium">Volver a Inicio</span>
+              </motion.button>
+            </Link>
           </motion.div>
 
           {/* Navigation */}
