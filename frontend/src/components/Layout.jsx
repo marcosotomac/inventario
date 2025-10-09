@@ -77,7 +77,9 @@ const Layout = () => {
             transition={{ delay: 0.3 }}
             className="px-4 py-4 bg-slate-800 dark:bg-slate-900 border-b border-slate-700"
           >
-            <h1 className="text-xl font-bold text-white mb-3">Sistema Inventario</h1>
+            <h1 className="text-xl font-bold text-white mb-3">
+              Sistema Inventario
+            </h1>
             <Link to="/">
               <motion.button
                 whileHover={{ scale: 1.02 }}
